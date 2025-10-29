@@ -337,187 +337,213 @@ td[class^="col-"], th[class^="col-"] {
     transform: translateX(-50%) translateY(0);
 }
 
-/* 移动端优化 */
+/* 移动端优化 - 保持表格样式，优化体验 */
 @media (max-width: 768px) {
     /* 整体布局调整 */
     .container {
-        padding: 10px;
+        padding: 8px;
     }
     
     .header {
-        padding: 15px 10px;
+        padding: 12px 8px;
     }
     
     .header h1 {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     
     /* 控制区域优化 */
     .controls {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
     
     .search-filter {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
     
     .search-filter input,
     .search-filter select {
         width: 100%;
         font-size: 16px; /* 防止iOS自动缩放 */
-        padding: 12px;
+        padding: 10px;
     }
     
     /* 统计区域 */
     .stats {
-        flex-direction: column;
-        gap: 10px;
+        gap: 8px;
+        flex-wrap: wrap;
     }
     
     .stat-item {
-        width: 100%;
-        padding: 12px;
+        flex: 1;
+        min-width: calc(50% - 4px);
+        padding: 10px;
+    }
+    
+    .stat-label {
+        font-size: 0.75em;
+    }
+    
+    .stat-value {
+        font-size: 1.3em;
     }
     
     /* 操作按钮区域 */
     .actions {
-        flex-direction: column;
-        gap: 10px;
+        gap: 6px;
     }
     
     .actions .btn {
-        width: 100%;
-        padding: 14px;
-        font-size: 1em;
+        padding: 10px;
+        font-size: 0.85em;
     }
     
-    /* 表格容器 */
+    /* 表格容器 - 保持横向滚动 */
     .table-container {
         max-height: none;
-        margin: 0 -10px; /* 扩展到容器边缘 */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* iOS 流畅滚动 */
     }
     
-    /* 表格样式 - 卡片式布局 */
+    /* 表格优化 - 减小尺寸但保持结构 */
     table {
-        display: block;
         min-width: auto;
-    }
-    
-    thead {
-        display: none; /* 隐藏表头 */
-    }
-    
-    tbody {
-        display: block;
-    }
-    
-    tbody tr {
-        display: block;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    tbody tr.pending {
-        border-left: 4px solid #f59e0b;
-    }
-    
-    tbody tr.packed {
-        border-left: 4px solid #10b981;
-    }
-    
-    tbody td {
-        display: block;
-        padding: 8px 0;
-        border: none;
-        position: static !important; /* 取消sticky */
-        left: auto !important;
-        right: auto !important;
-    }
-    
-    /* 序号 - 显著显示 */
-    td.col-id {
-        font-size: 1.2em;
-        font-weight: 700;
-        color: #2196F3;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #e0e0e0;
-    }
-    
-    td.col-id::before {
-        content: '订单 #';
-        font-weight: 600;
-        color: #666;
-    }
-    
-    /* 操作按钮 - 大按钮 */
-    td.col-action {
-        margin-bottom: 10px;
-    }
-    
-    td.col-action .btn {
-        width: 100%;
-        padding: 14px;
-        font-size: 1.05em;
-        font-weight: 600;
-    }
-    
-    /* CSV数据 - 紧凑显示 */
-    td[class^="col-"]:not(.col-id):not(.col-action):not(.col-status):not(.col-notes) {
-        font-size: 0.9em;
-        padding: 6px 0;
-        word-wrap: break-word;
-        max-width: 100%;
-    }
-    
-    /* 给每个数据字段添加标签 */
-    td[class^="col-"]:not(.col-id):not(.col-action):not(.col-status):not(.col-notes)::before {
-        content: attr(data-label);
-        display: block;
-        font-weight: 600;
-        color: #666;
         font-size: 0.85em;
-        margin-bottom: 3px;
     }
     
-    /* 状态标签 */
-    td.col-status {
-        margin: 10px 0;
+    th, td {
+        padding: 8px 6px;
+        font-size: 0.9em;
+    }
+    
+    /* 固定左侧关键列 */
+    th.col-id, td.col-id {
+        position: sticky;
+        left: 0;
+        background: white;
+        z-index: 10;
+        min-width: 45px;
+        max-width: 45px;
+        font-weight: 700;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+    }
+    
+    tbody tr.pending td.col-id {
+        background: #fffbf0;
+    }
+    
+    tbody tr.packed td.col-id {
+        background: #f0f8f0;
+    }
+    
+    th.col-action, td.col-action {
+        position: sticky;
+        left: 45px;
+        background: white;
+        z-index: 10;
+        min-width: 80px;
+        max-width: 80px;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+    }
+    
+    tbody tr.pending td.col-action {
+        background: #fffbf0;
+    }
+    
+    tbody tr.packed td.col-action {
+        background: #f0f8f0;
+    }
+    
+    thead th.col-id,
+    thead th.col-action {
+        background: #f8f9fa;
+    }
+    
+    /* 操作按钮优化 */
+    td.col-action .btn {
+        padding: 8px 6px;
+        font-size: 0.8em;
+        white-space: nowrap;
+    }
+    
+    /* CSV数据列 - 紧凑显示 */
+    td[class^="col-"]:not(.col-id):not(.col-action):not(.col-status):not(.col-notes) {
+        min-width: 100px;
+        max-width: 200px;
+        white-space: normal;
+        font-size: 0.85em;
+    }
+    
+    /* 隐藏不太重要的列（可选） */
+    .mobile-hide {
+        display: none;
+    }
+    
+    /* 状态列 */
+    th.col-status, td.col-status {
+        min-width: 70px;
+        max-width: 70px;
     }
     
     .status-badge {
-        display: inline-block;
-        padding: 8px 16px;
-        font-size: 0.95em;
+        padding: 4px 8px;
+        font-size: 0.8em;
     }
     
-    /* 备注输入框 */
-    td.col-notes {
-        margin-top: 10px;
+    /* 备注列 */
+    th.col-notes, td.col-notes {
+        min-width: 120px;
+        max-width: 120px;
     }
     
     .notes-input {
-        width: 100%;
-        font-size: 16px; /* 防止iOS自动缩放 */
-        padding: 12px;
+        font-size: 14px;
+        padding: 6px;
+    }
+    
+    /* 行点击区域提示 */
+    tbody tr {
+        position: relative;
+    }
+    
+    tbody tr::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: transparent;
+        transition: background 0.2s;
+    }
+    
+    tbody tr.pending::after {
+        background: #f59e0b;
+    }
+    
+    tbody tr.packed::after {
+        background: #10b981;
+    }
+    
+    /* 触摸反馈 */
+    tbody tr:active {
+        background-color: rgba(33, 150, 243, 0.1);
     }
     
     /* 帮助按钮 */
     .help-btn {
-        padding: 10px 16px;
-        font-size: 0.9em;
+        padding: 8px 12px;
+        font-size: 0.85em;
     }
     
     /* Toast优化 */
     .toast {
         bottom: 20px;
         max-width: 90%;
-        font-size: 0.9em;
+        font-size: 0.85em;
+        padding: 10px 20px;
     }
     
     /* 模态框优化 */
@@ -525,15 +551,20 @@ td[class^="col-"], th[class^="col-"] {
         width: 95%;
         margin: 10% auto;
         padding: 15px;
+        max-height: 80vh;
+        overflow-y: auto;
     }
     
     .help-content {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
     
-    /* 滑动提示 */
-    tbody tr:active {
-        background-color: rgba(33, 150, 243, 0.1);
+    .help-content h3 {
+        font-size: 1.1em;
+    }
+    
+    .help-content p, .help-content li {
+        font-size: 0.9em;
     }
 }
 
