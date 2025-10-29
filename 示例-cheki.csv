@@ -1,0 +1,5 @@
+Timestamp,Email address,Solo Cheki,When To Pickup?,Name on Posters & Photobook,Name :,Address,Contact Number :,Facebook / Instagram Username or Link (e.g @xxx_123)*,Payment (Please include your postage),Payment Proof,Name on Posters & Photobook,Name :,Contact Number :,Facebook / Instagram Username or Link (e.g @xxx_123),Payment
+2024/01/15 10:30:00,john@example.com,MyGO - Aya,Day 1 Pickup,AYA,张小明,123 Main Street,0123456789,@john_doe,Pending,AWAITING CONFIRMATION,AYA,张小明,0123456789,@john_doe,Pending
+2024/01/15 11:20:00,jane@example.com,Asuka,Day 2 Pickup,AYA,李小华,456 Oak Avenue,0987654321,@jane_smith,Paid,PENDING CONFIRMATION,AYA,李小华,0987654321,@jane_smith,Paid
+2024/01/15 14:15:00,bob@example.com,MyGO - Tomori,Day 1 Pickup,TOMORI,王大军,789 Pine Road,0123987654,@bob_jones,Pending,AWAITING CONFIRMATION,TOMORI,王大军,0123987654,@bob_jones,Pending
+

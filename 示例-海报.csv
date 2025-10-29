@@ -1,0 +1,5 @@
+Timestamp,Email address,Column 2,Column 3,Column 4,Column 5,MyGO,Asuka,Column 8,SOLO CHEKI ONLY!,Pickup or Delivery?,Name on Posters & Photobook,Name :,Address,Contact Number :,Facebook / Instagram Username or Link (e.g @xxx_123)*,Payment,Payment Proof,Name on Posters & Photobook,Name :,Contact Number :,Facebook / Instagram Username or Link (e.g @xxx_123),Payment,Payment Proof
+2024/01/16 09:30:00,alice@example.com,,,,""",,,,SOLO CHEKI,Pickup,POSTER,陈小美,101 First Street,0123456789,@alice_wu,Paid,AWAITING CONFIRMATION,POSTER,陈小美,0123456789,@alice_wu,Paid,AWAITING CONFIRMATION
+2024/01/16 10:45:00,charlie@example.com,,,,""",1,1,,POSTER + PHOTOBOOK + CHEKI,Delivery,POSTER,刘小强,202 Second Avenue,0987654321,@charlie_liu,Pending,AWAITING CONFIRMATION,POSTER,刘小强,0987654321,@charlie_liu,Pending,AWAITING CONFIRMATION
+2024/01/16 15:20:00,diana@example.com,,,,""",2,,1,POSTER + CHEKI,Pickup,POSTER,王小芳,303 Third Street,0123987654,@diana_wang,Paid,PENDING CONFIRMATION,POSTER,王小芳,0123987654,@diana_wang,Paid,PENDING CONFIRMATION
+
