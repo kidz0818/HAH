@@ -679,10 +679,10 @@ function renderTable(displayOrders = orders) {
     // 生成表格内容 - 操作按钮在左边
     tbody.innerHTML = displayOrders.map(order => {
         let html = `<tr class="${order.status}" data-order-id="${order.id}">`;
-        html += `<td class="col-id">${order.id}</td>`;
+        html += `<td class="col-id" data-label="订单号">${order.id}</td>`;
         
         // 操作按钮（移到第二列）
-        html += `<td class="col-action">
+        html += `<td class="col-action" data-label="操作">
             ${order.status === 'pending' 
                 ? `<button class="btn btn-success btn-sm" onclick="markAsPacked(${order.id})">✓ 已打包</button>`
                 : `<button class="btn btn-secondary btn-sm" onclick="markAsPending(${order.id})">↩ 撤销</button>`
@@ -697,11 +697,12 @@ function renderTable(displayOrders = orders) {
             const withBreaks = escaped.replace(/\n/g, '<br>');
             // title属性中不需要<br>，只显示原始文本
             const titleText = displayValue.substring(0, 500); // 限制tooltip长度
-            html += `<td class="col-${index}" title="${escapeHtml(titleText)}">${withBreaks}</td>`;
+            const headerLabel = headers[index] || `列${index + 1}`;
+            html += `<td class="col-${index}" data-label="${escapeHtml(headerLabel)}" title="${escapeHtml(titleText)}">${withBreaks}</td>`;
         });
         
         // 打包状态
-        html += `<td class="col-status">
+        html += `<td class="col-status" data-label="状态">
             <span class="status-badge ${order.status}">
                 ${order.status === 'pending' ? '待打包' : '已打包'}
             </span>
@@ -709,7 +710,7 @@ function renderTable(displayOrders = orders) {
         
         // 备注
         const notes = order.notes || '';
-        html += `<td class="col-notes">
+        html += `<td class="col-notes" data-label="备注">
             <input type="text" 
                    class="notes-input" 
                    value="${escapeHtml(notes)}" 
